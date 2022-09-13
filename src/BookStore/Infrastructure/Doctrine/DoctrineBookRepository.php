@@ -25,16 +25,18 @@ final class DoctrineBookRepository extends DoctrineRepository implements BookRep
 
     public function save(Book $book): void
     {
-        throw new \BadMethodCallException('I need to be implemented');
+        $this->em->persist($book);
+        $this->em->flush();
     }
 
     public function remove(Book $book): void
     {
-        throw new \BadMethodCallException('I need to be implemented');
+        $this->em->remove($book);
+        $this->em->flush();
     }
 
     public function ofId(BookId $id): ?Book
     {
-        throw new \BadMethodCallException('I need to be implemented');
+        return $this->em->find(self::ENTITY_CLASS, $id->value);
     }
 }
