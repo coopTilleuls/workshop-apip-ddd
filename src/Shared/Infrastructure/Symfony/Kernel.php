@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Symfony;
 
+use App\Shared\Application\Command\CommandHandlerInterface;
+use App\Shared\Application\Query\QueryHandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
@@ -26,5 +29,14 @@ final class Kernel extends BaseKernel
     {
         $routes->import(sprintf('%s/config/{routes}/%s/*.php', $this->getProjectDir(), (string) $this->environment));
         $routes->import(sprintf('%s/config/{routes}/*.php', $this->getProjectDir()));
+    }
+
+    protected function build(ContainerBuilder $container): void
+    {
+        $container->registerForAutoconfiguration(QueryHandlerInterface::class)
+            ->addTag('messenger.message_handler', ['bus' => 'query.bus']);
+
+        $container->registerForAutoconfiguration(CommandHandlerInterface::class)
+            ->addTag('messenger.message_handler', ['bus' => 'command.bus']);
     }
 }
