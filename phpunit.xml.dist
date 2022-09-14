@@ -21,6 +21,9 @@
   <testsuite name="BookStore">
     <directory>tests/BookStore</directory>
   </testsuite>
+  <testsuite name="Subscription">
+    <directory>tests/Subscription</directory>
+  </testsuite>
 </testsuites>
 
 <coverage processUncoveredFiles="true">
