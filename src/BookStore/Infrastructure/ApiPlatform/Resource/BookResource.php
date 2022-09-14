@@ -10,17 +10,23 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
 use App\BookStore\Domain\Model\Book;
 use App\BookStore\Infrastructure\ApiPlatform\Payload\DiscountBookPayload;
+use App\BookStore\Infrastructure\ApiPlatform\State\Processor\DiscountBookProcessor;
+use App\BookStore\Infrastructure\ApiPlatform\State\Provider\BookItemProvider;
 use Symfony\Component\Uid\AbstractUid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
     shortName: 'Book',
     operations: [
-        new Get(),
+        new Get(
+            provider: BookItemProvider::class,
+        ),
         new Post(
             '/books/{id}/discount.{_format}',
             openapiContext: ['summary' => 'Apply a discount percentage on a Book resource.'],
             input: DiscountBookPayload::class,
+            provider: BookItemProvider::class,
+            processor: DiscountBookProcessor::class,
         ),
     ],
 )]
