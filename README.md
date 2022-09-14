@@ -4,7 +4,7 @@ This is a demo project used for the DDD x API Platform Workshop by @chalasr & @m
 
 ## Getting started
 
-1. Run `git clone https://github.com/mtarld/apip-ddd` to clone the project
+1. Run `git clone https://github.com/coopTilleuls/workshop-apip-ddd` to clone the project
 1. Run `make install` to install the project
 1. Run `make start` to up your containers
 1. Visit https://localhost/api and play with your app!
