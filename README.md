@@ -9,12 +9,6 @@ This is a demo project used for the DDD x API Platform Workshop by @chalasr & @m
 1. Run `make start` to up your containers
 1. Visit https://localhost/api and play with your app!
 
-## :warning: Temporary dependencies
-
-As [API platform](https://github.com/api-platform/core) 3 isn't released yet, that repository is using the `dev-main`
-branch of `api-platform/core`.
-As soon as API Platform is released (it should happen very soon), the `v3` tag must be targetterd and the `minimum-stability` must be updated.
-
 ## Exercises
 
 ### 1. The domain layer
